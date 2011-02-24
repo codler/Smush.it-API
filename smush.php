@@ -15,12 +15,13 @@
 require_once('fetch_url.class.php');
 
 defined('SMUSH_VERSION') or define('SMUSH_VERSION', 1);
+defined('SMUSH_USER_AGENT') or define('SMUSH_USER_AGENT', 'SmushAPI/'.SMUSH_VERSION.' (+https://github.com/codler/Smush.it-API)');
 
 function smush_file($optimize_file, $optimized_file=null) {
 	if (!$optimized_file) $optimized_file = $optimize_file;
 	
 	// send file
-	$obj = new Fetch_url('http://www.smushit.com/ysmush.it/ws.php', array('files[]' => '@'.$optimize_file), null, null, 'SmushAPI/'.SMUSH_VERSION);
+	$obj = new Fetch_url('http://www.smushit.com/ysmush.it/ws.php', array('files[]' => '@'.$optimize_file), null, null, SMUSH_USER_AGENT);
 	
 	return _smush($obj, $optimized_file);
 }
@@ -28,7 +29,7 @@ function smush_file($optimize_file, $optimized_file=null) {
 function smush_url($url, $optimized_file) {
 	
 	// send file
-	$obj = new Fetch_url('http://www.smushit.com/ysmush.it/ws.php?img='.urlencode($url), null, null, null, 'SmushAPI/'.SMUSH_VERSION);
+	$obj = new Fetch_url('http://www.smushit.com/ysmush.it/ws.php?img='.urlencode($url), null, null, null, SMUSH_USER_AGENT);
 	
 	return _smush($obj, $optimized_file);
 }
