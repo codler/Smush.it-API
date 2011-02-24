@@ -38,7 +38,7 @@ function _smush($obj, $dest) {
 	
 	if ($obj->error) {
 		return array(
-			'error' => 'Send error'
+			'error' => 'Send error: ' . $obj->error
 		);
 		return false;
 	}
@@ -54,14 +54,14 @@ function _smush($obj, $dest) {
 	
 	if ( -1 === intval($s->dest_size)) {
 		return array(
-			'error' => 'Smush error1' . print_r($s, true)
+			'error' => 'Smush error1: ' . print_r($s, true)
 		);
 		return false;
 	}
 	
 	if (!$s->dest) {
 		return array(
-			'error' => 'Smush error2' . print_r($s, true)
+			'error' => 'Smush error2: ' . print_r($s, true)
 		);
 		return false;
 	}
